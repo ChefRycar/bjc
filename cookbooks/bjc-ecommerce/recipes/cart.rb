@@ -33,10 +33,12 @@ basedir = '/var/lib/tomcat7/webapps/cart/WEB-INF'
 
 directory "#{basedir}/src" do
   action :create
+  recursive true
 end
 
 directory "#{basedir}/classes" do
   action :create
+  recursive true
 end
 
 %w(appSettings hibernate log4j).each do |f|
