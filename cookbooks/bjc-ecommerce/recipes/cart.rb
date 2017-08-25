@@ -41,6 +41,11 @@ directory "#{basedir}/classes" do
   recursive true
 end
 
+directory "#{basedir}/conf/keys" do
+  action :create
+  recursive true
+end
+
 %w(appSettings hibernate log4j).each do |f|
   template "#{basedir}/src/#{f}.properties" do
     source "src/#{f}.properties.erb"
