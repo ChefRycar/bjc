@@ -13,10 +13,11 @@ end
 remote_file "#{Chef::Config['file_cache_path']}/softslate-3.3.6.war" do
   action :create
   source 'https://s3-us-west-2.amazonaws.com/bjcpublic/softslate-commerce/softslate-3.3.6.war'
+  mode 644
 end
 
 execute "Install Shopping Cart" do
-  command "cp #{Chef::Config['file_cache_path']}/softslate-3.3.6.war /var/lib/tomcat7/webapps/cart.war"
+  command "cp -a #{Chef::Config['file_cache_path']}/softslate-3.3.6.war /var/lib/tomcat7/webapps/cart.war"
   action :run
   not_if { File.exist?("/var/lib/tomcat7/webapps/cart.war") }
   notifies :run, 'ruby_block[Sleep my pretty...]', :immediate
